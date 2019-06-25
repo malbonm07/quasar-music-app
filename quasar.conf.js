@@ -53,7 +53,8 @@ module.exports = function (ctx) {
         'QTabs',
         'QTab',
         'QSeparator',
-        'QCard'
+        'QCard',
+        'QSpinnerDots'
       ],
 
       directives: [

@@ -6,7 +6,7 @@
         <q-input standout
         :dense="dense"
         type="text"
-        placeholder="Buscar tema"
+        placeholder="Search"
         v-model="searchedTrack"
         @keyup.enter="search"
         >
@@ -18,6 +18,37 @@
     <q-img src="https://images.pexels.com/photos/761963/pexels-photo-761963.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="bg-search absolute" alt="bg-img" :ratio="16/9"></q-img>
     </div>
     <!------------------------------END HEADER------------------------------->
+
+    <!------------------------------LOADING------------------------------->
+    <div class="row justify-center q-pt-lg" v-show="loading">
+      <div>
+        <q-spinner-dots
+          color="amber"
+          size="6em"
+        />
+        <!-- <q-tooltip :offset="[0, 8]">QSpinnerDots</q-tooltip> -->
+       </div>
+    </div>
+    <!------------------------------END LOADING------------------------------->
+
+    <div class="q-pa-md row justify-center items-center q-gutter-lg">
+      <div class="col-12">
+        <div class="offset-1 col-10">
+          <p class="text-center text-weight-thin text-subtitle1 text-grey text-weight-regular">{{tracks.length}} Songs were found</p>
+        </div>
+      </div>
+      <div class="col-5 col-md-3" v-for="(track, index) in tracks" :key="track.id">
+        <Tracks
+          :trackObject="track"
+          :indexObject="index"
+          @selected="trackSelected"
+          :trackActive="track.id === trackIdSelected"
+          v-blur="track.preview_url"
+          @favorite="getFavoriteTrackIndex"
+        >
+        </Tracks>
+      </div>
+    </div>
 
     <!------------------------------SWIPER RELEASES------------------------------->
     <div class="row wrap">
@@ -295,6 +326,7 @@
 </style>
 
 <script>
+import Tracks from '../components/track.vue'
 import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import gettingApi from '../services/track'
@@ -303,14 +335,16 @@ export default {
   name: 'PageIndex',
   components: {
     swiper,
-    swiperSlide
+    swiperSlide,
+    Tracks
   },
   data () {
     return {
       searchedTrack: '',
       tracks: [],
-      cargando: null,
+      loading: null,
       alertNotification: false,
+      trackIdSelected: null,
       text: '',
       ph: '',
       dense: false,
@@ -330,20 +364,23 @@ export default {
   methods: {
     search () {
       this.tracks = []
-      this.cargando = true
+      this.loading = true
       if (!this.searchedTrack) {
         return
       } else {
         gettingApi.search(this.searchedTrack).then(res => {
           this.tracks = res.tracks.items
-          console.log(this.tracks)
-          this.cargando = false
+          // console.log(this.tracks)
+          this.loading = false
           if (this.tracks.length === 0) {
             this.alertNotification = true
           }
         })
       }
-    }
+    },
+    trackSelected(id) {
+      this.trackIdSelected = id;
+    },
   }
 }
 </script>

@@ -24,9 +24,14 @@
       bordered
       content-class="bg-grey-2"
     >
-      <q-list>
+      <q-list bordered padding class="text-grey-8">
         <!-- <q-item-label header>Essential Links</q-item-label> -->
-        <q-item clickable tag="a" target="_blank">
+        <q-item clickable tag="a"
+        target="_blank"
+        :active="link === 'radio'"
+        @click="link = 'radio'"
+        active-class="my-menu-link"
+        >
           <q-item-section avatar>
             <q-icon name="radio" />
           </q-item-section>
@@ -35,7 +40,12 @@
             <!-- <q-item-label caption>quasar.dev</q-item-label> -->
           </q-item-section>
         </q-item>
-        <q-item clickable tag="a" target="_blank">
+        <q-item clickable tag="a"
+        target="_blank"
+        :active="link === 'folder'"
+        @click="link = 'folder'"
+        active-class="my-menu-link"
+        >
           <q-item-section avatar>
             <q-icon name="folder" />
           </q-item-section>
@@ -44,7 +54,11 @@
             <!-- <q-item-label caption>github.com/quasarframework</q-item-label> -->
           </q-item-section>
         </q-item>
-        <q-item clickable tag="a" target="_blank" href="">
+        <q-item clickable tag="a"
+        target="_blank"
+        :active="link === 'artists'"
+        @click="link = 'artists'"
+        active-class="my-menu-link">
           <q-item-section avatar>
             <q-icon name="headset" />
           </q-item-section>
@@ -53,7 +67,11 @@
             <!-- <q-item-label caption>chat.quasar.dev</q-item-label> -->
           </q-item-section>
         </q-item>
-        <q-item clickable tag="a" target="_blank" href="">
+        <q-item clickable tag="a"
+        target="_blank"
+        :active="link === 'video'"
+        @click="link = 'video'"
+        active-class="my-menu-link">
           <q-item-section avatar>
             <q-icon name="play_circle_outline" />
           </q-item-section>
@@ -63,7 +81,11 @@
           </q-item-section>
         </q-item>
         <q-separator/>
-        <q-item clickable tag="a" target="_blank" href="">
+        <q-item clickable tag="a"
+        target="_blank"
+        :active="link === 'settings'"
+        @click="link = 'settings'"
+        active-class="my-menu-link">
           <q-item-section avatar>
             <q-icon name="settings" />
           </q-item-section>
@@ -72,7 +94,11 @@
             <!-- <q-item-label caption>@quasarframework</q-item-label> -->
           </q-item-section>
         </q-item>
-        <q-item clickable tag="a" target="_blank" href="">
+        <q-item clickable tag="a"
+        target="_blank"
+        :active="link === 'help'"
+        @click="link = 'help'"
+        active-class="my-menu-link">
           <q-item-section avatar>
             <q-icon name="help" />
           </q-item-section>
@@ -81,7 +107,11 @@
             <!-- <q-item-label caption>@quasarframework</q-item-label> -->
           </q-item-section>
         </q-item>
-        <q-item clickable tag="a" target="_blank" href="">
+        <q-item clickable tag="a"
+        target="_blank"
+        :active="link === 'feedback'"
+        @click="link = 'feedback'"
+        active-class="my-menu-link">
           <q-item-section avatar>
             <q-icon name="feedback" />
           </q-item-section>
@@ -105,7 +135,8 @@ export default {
   name: 'MyLayout',
   data () {
     return {
-      leftDrawerOpen: this.$q.platform.is.desktop
+      leftDrawerOpen: this.$q.platform.is.desktop,
+      link: 'artists'
     }
   },
   methods: {
