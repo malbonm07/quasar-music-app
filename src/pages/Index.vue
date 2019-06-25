@@ -3,7 +3,13 @@
     <!------------------------------HEADER AND SEARCH------------------------------->
     <div class="row wrap relative items-center" style="height: 50vh;">
       <div class="offset-1 col-10 offset-md-3 col-md-6 absolute" style="z-index: 10">
-        <q-input standout v-model="text" :dense="dense">
+        <q-input standout
+        :dense="dense"
+        type="text"
+        placeholder="Buscar tema"
+        v-model="searchedTrack"
+        @keyup.enter="search"
+        >
           <template v-slot:append>
             <q-icon name="search" />
           </template>
@@ -30,7 +36,7 @@
               <q-img
                 src="https://placeimg.com/500/300/nature"
                 :ratio="1"
-                style="border-radius: 5px;"
+                style="border-radius: 2px;"
               />
             </div>
           </swiper-slide>
@@ -40,7 +46,7 @@
               <q-img
                 src="https://placeimg.com/500/300/nature"
                 :ratio="1"
-                style="border-radius: 3px;"
+                style="border-radius: 2px;"
               />
             </div>
           </swiper-slide>
@@ -50,7 +56,7 @@
               <q-img
                 src="https://placeimg.com/500/300/nature"
                 :ratio="1"
-                style="border-radius: 3px;"
+                style="border-radius: 2px;"
               />
             </div>
           </swiper-slide>
@@ -60,7 +66,7 @@
               <q-img
                 src="https://placeimg.com/500/300/nature"
                 :ratio="1"
-                style="border-radius: 3px;"
+                style="border-radius: 2px;"
               />
             </div>
           </swiper-slide>
@@ -70,7 +76,7 @@
               <q-img
                 src="https://placeimg.com/500/300/nature"
                 :ratio="1"
-                style="border-radius: 3px;"
+                style="border-radius: 2px;"
               />
             </div>
           </swiper-slide>
@@ -80,7 +86,7 @@
               <q-img
                 src="https://placeimg.com/500/300/nature"
                 :ratio="1"
-                style="border-radius: 3px;"
+                style="border-radius: 2px;"
               />
             </div>
           </swiper-slide>
@@ -111,7 +117,7 @@
 
         <q-separator />
 
-        <q-tab-panels v-model="tab" animated class="bg-purple-1 text-center">
+        <q-tab-panels v-model="tab" animated class="bg-grey-12 text-center">
           <q-tab-panel name="today">
             <!-- <div class="text-h6">Mails</div> -->
             <div class="row">
@@ -129,14 +135,66 @@
                       </q-item-label>
                     </q-item-section>
 
-                    <q-item-section>
-                      <!-- <q-item-label lines="1">
-                        <span class="text-weight-medium">[quasarframework/quasar]</span>
-                        <span class="text-grey-8"> - GitHub repository</span>
+                    <q-item-section></q-item-section>
+
+                    <q-item-section side>
+                      <q-item-label>3:00</q-item-label>
+                    </q-item-section>
+
+                    <q-item-section side>
+                      <div class="text-grey-8 q-gutter-xs">
+                        <q-btn size="12px" flat dense round icon="favorite" />
+                        <q-btn size="12px" flat dense round icon="more_vert" />
+                      </div>
+                    </q-item-section>
+                  </q-item>
+                  <q-item>
+                    <q-item-section avatar>
+                      <img src="https://cdn.quasar.dev/img/boy-avatar.png" width="37px">
+                    </q-item-section>
+
+                    <q-item-section class="col-3 col-sm-2">
+                      <q-item-label lines="1" class="q-mt-xs">Single line title</q-item-label>
+                      <q-item-label lines="1" class="q-mt-xs">
+                        <span class="text-grey-8"> Single subtitle</span>
                       </q-item-label>
-                      <q-item-label caption lines="1">
-                        @rstoenescu in #1: > The build system
-                      </q-item-label> -->
+                    </q-item-section>
+
+                    <q-item-section></q-item-section>
+
+                    <q-item-section side>
+                      <q-item-label>2:00</q-item-label>
+                    </q-item-section>
+
+                    <q-item-section side>
+                      <div class="text-grey-8 q-gutter-xs">
+                        <q-btn size="12px" flat dense round icon="favorite_border" />
+                        <q-btn size="12px" flat dense round icon="more_vert" />
+                      </div>
+                    </q-item-section>
+                  </q-item>
+                </q-list>
+              </div>
+            </div>
+          </q-tab-panel>
+
+          <q-tab-panel name="week">
+            <div class="row">
+              <div class="col-12">
+                <q-list bordered>
+                  <q-item>
+                    <q-item-section avatar>
+                      <img src="https://cdn.quasar.dev/img/boy-avatar.png" width="37px">
+                    </q-item-section>
+
+                    <q-item-section class="col-3 col-sm-2">
+                      <q-item-label lines="1" class="q-mt-xs">Single line title</q-item-label>
+                      <q-item-label lines="1" class="q-mt-xs">
+                        <span class="text-grey-8"> Single subtitle</span>
+                      </q-item-label>
+                    </q-item-section>
+
+                    <q-item-section>
                     </q-item-section>
 
                     <q-item-section side>
@@ -159,13 +217,6 @@
                     </q-item-section>
 
                     <q-item-section>
-                      <!-- <q-item-label lines="1">
-                        <span class="text-weight-medium">[quasarframework/quasar]</span>
-                        <span class="text-grey-8"> - GitHub repository</span>
-                      </q-item-label>
-                      <q-item-label caption lines="1">
-                        @rstoenescu in #1: > The build system
-                      </q-item-label> -->
                     </q-item-section>
 
                     <q-item-section side>
@@ -180,14 +231,57 @@
             </div>
           </q-tab-panel>
 
-          <q-tab-panel name="week" class="bg-purple-2">
-            <div class="text-h6">Alarms</div>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          </q-tab-panel>
-
           <q-tab-panel name="month">
-            <div class="text-h6">Movies</div>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            <div class="row">
+              <div class="col-12">
+                <q-list bordered>
+                  <q-item>
+                    <q-item-section avatar>
+                      <img src="https://cdn.quasar.dev/img/boy-avatar.png" width="37px">
+                    </q-item-section>
+
+                    <q-item-section class="col-3 col-sm-2">
+                      <q-item-label lines="1" class="q-mt-xs">Single line title</q-item-label>
+                      <q-item-label lines="1" class="q-mt-xs">
+                        <span class="text-grey-8"> Single subtitle</span>
+                      </q-item-label>
+                    </q-item-section>
+
+                    <q-item-section>
+                    </q-item-section>
+
+                    <q-item-section side>
+                      <div class="text-grey-8 q-gutter-xs">
+                        <q-btn size="12px" flat dense round icon="favorite" />
+                        <q-btn size="12px" flat dense round icon="more_vert" />
+                      </div>
+                    </q-item-section>
+                  </q-item>
+                  <q-item>
+                    <q-item-section avatar>
+                      <img src="https://cdn.quasar.dev/img/boy-avatar.png" width="37px">
+                    </q-item-section>
+
+                    <q-item-section class="col-3 col-sm-2">
+                      <q-item-label lines="1" class="q-mt-xs">Single line title</q-item-label>
+                      <q-item-label lines="1" class="q-mt-xs">
+                        <span class="text-grey-8"> Single subtitle</span>
+                      </q-item-label>
+                    </q-item-section>
+
+                    <q-item-section>
+                    </q-item-section>
+
+                    <q-item-section side>
+                      <div class="text-grey-8 q-gutter-xs">
+                        <q-btn size="12px" flat dense round icon="favorite_border" />
+                        <q-btn size="12px" flat dense round icon="more_vert" />
+                      </div>
+                    </q-item-section>
+                  </q-item>
+                </q-list>
+              </div>
+            </div>
           </q-tab-panel>
         </q-tab-panels>
       </q-card>
@@ -203,6 +297,8 @@
 <script>
 import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import gettingApi from '../services/track'
+// import tracks from "./tracks"
 export default {
   name: 'PageIndex',
   components: {
@@ -211,6 +307,10 @@ export default {
   },
   data () {
     return {
+      searchedTrack: '',
+      tracks: [],
+      cargando: null,
+      alertNotification: false,
       text: '',
       ph: '',
       dense: false,
@@ -225,6 +325,24 @@ export default {
         }
       },
       tab: 'today'
+    }
+  },
+  methods: {
+    search () {
+      this.tracks = []
+      this.cargando = true
+      if (!this.searchedTrack) {
+        return
+      } else {
+        gettingApi.search(this.searchedTrack).then(res => {
+          this.tracks = res.tracks.items
+          console.log(this.tracks)
+          this.cargando = false
+          if (this.tracks.length === 0) {
+            this.alertNotification = true
+          }
+        })
+      }
     }
   }
 }

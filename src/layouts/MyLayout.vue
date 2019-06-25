@@ -62,12 +62,31 @@
             <!-- <q-item-label caption>forum.quasar.dev</q-item-label> -->
           </q-item-section>
         </q-item>
+        <q-separator/>
         <q-item clickable tag="a" target="_blank" href="">
           <q-item-section avatar>
             <q-icon name="settings" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Settings</q-item-label>
+            <!-- <q-item-label caption>@quasarframework</q-item-label> -->
+          </q-item-section>
+        </q-item>
+        <q-item clickable tag="a" target="_blank" href="">
+          <q-item-section avatar>
+            <q-icon name="help" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Help</q-item-label>
+            <!-- <q-item-label caption>@quasarframework</q-item-label> -->
+          </q-item-section>
+        </q-item>
+        <q-item clickable tag="a" target="_blank" href="">
+          <q-item-section avatar>
+            <q-icon name="feedback" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Send Feedback</q-item-label>
             <!-- <q-item-label caption>@quasarframework</q-item-label> -->
           </q-item-section>
         </q-item>
