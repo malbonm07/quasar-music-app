@@ -31,18 +31,19 @@
     </div>
     <!------------------------------END LOADING------------------------------->
 
-    <div class="q-pa-md row justify-center items-center q-gutter-lg">
+    <div class="q-pa-md row justify-center items-center q-gutter-md">
       <div class="col-12">
         <div class="offset-1 col-10">
           <p class="text-center text-weight-thin text-subtitle1 text-grey text-weight-regular">{{tracks.length}} Songs were found</p>
         </div>
       </div>
-      <div class="col-5 col-md-3" v-for="(track, index) in tracks" :key="track.id">
+      <div class="col-5 col-sm-2" v-for="(track, index) in tracks" :key="track.id">
         <Tracks
           :trackObject="track"
           :indexObject="index"
           @selected="trackSelected"
           :trackActive="track.id === trackIdSelected"
+          :class="{'isActive' : track.id === trackIdSelected }"
           v-blur="track.preview_url"
           @favorite="getFavoriteTrackIndex"
         >
@@ -58,7 +59,7 @@
         </h2>
         <p class="text-center text-weight-thin text-subtitle1 text-grey">22 positions</p>
       </div>
-      <div class="offset-1 col-10">
+      <div class="col-12 q-pr-md q-pl-md">
       <!-- swiper -->
         <swiper :options="swiperOption">
           <swiper-slide>
@@ -350,7 +351,7 @@ export default {
       dense: false,
       swiperOption: {
         slidesPerView: 4,
-        spaceBetween: 30,
+        spaceBetween: 10,
         // loop: true,
         freeMode: true,
         pagination: {
@@ -360,6 +361,9 @@ export default {
       },
       tab: 'today'
     }
+  },
+  created() {
+    
   },
   methods: {
     search () {
