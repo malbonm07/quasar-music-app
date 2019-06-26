@@ -22,9 +22,9 @@
     <q-drawer
       v-model="leftDrawerOpen"
       bordered
-      content-class="bg-grey-2"
+      :content-style="{ backgroundColor: '#1a1a1a' }"
     >
-      <q-list bordered padding class="text-grey-8">
+      <q-list bordered class="text-grey-4">
         <!-- <q-item-label header>Essential Links</q-item-label> -->
         <q-item clickable tag="a"
         target="_blank"

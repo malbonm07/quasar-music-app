@@ -44,7 +44,6 @@
           @selected="trackSelected"
           :trackActive="track.id === trackIdSelected"
           :class="{'isActive' : track.id === trackIdSelected }"
-          v-blur="track.preview_url"
           @favorite="getFavoriteTrackIndex"
         >
         </Tracks>
@@ -320,6 +319,7 @@
       </div>
     </div>
     <!------------------------------END NEW PLEYED SECTION------------------------------->
+
   </q-page>
 </template>
 
@@ -331,7 +331,6 @@ import Tracks from '../components/track.vue'
 import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import gettingApi from '../services/track'
-// import tracks from "./tracks"
 export default {
   name: 'PageIndex',
   components: {
@@ -346,6 +345,9 @@ export default {
       loading: null,
       alertNotification: false,
       trackIdSelected: null,
+      favorites: [],
+      trackIdSelected: "",
+      tracksIds: [],
       text: '',
       ph: '',
       dense: false,
@@ -385,6 +387,25 @@ export default {
     trackSelected(id) {
       this.trackIdSelected = id;
     },
+    getFavoriteTrackIndex(index) {     
+      if(this.tracksIds.length === 0) { //agregamos el track.id al arreglo tracksIds[] y agregamos el mismo objeto a favoritos[]
+        this.tracksIds.push(this.tracks[index].id)
+        this.favorites.push(this.tracks[index]);
+        localStorage.setItem("favorites", JSON.stringify(this.favorites));
+        //console.log(this.tracksIds)
+      }else if (this.tracksIds.indexOf(this.tracks[index].id) >= 0) {//revisamos si ya tenemos el id dentro del arreglo tracksIds[]
+        //console.log("este track ya está en lista de favoritos");
+        localStorage.setItem("favorites", JSON.stringify(this.favorites));
+
+        //agregamos el id del track al arreglo de favoritos[] y tambien agregamos el id al tracksIds[] para evitar repeticiones al momento de volver a agregar otro favorito
+      } else {
+        this.favorites.push(this.tracks[index]);
+        this.tracksIds.push(this.tracks[index].id)
+        localStorage.setItem("favorites", JSON.stringify(this.favorites));
+        //console.log("nuevo track agregado");
+        //console.log(this.tracksIds)
+      }
+    }
   }
 }
 </script>

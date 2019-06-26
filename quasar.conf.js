@@ -1,5 +1,6 @@
 // Configuration for your app
 // https://quasar.dev/quasar-cli/quasar-conf-js
+import blur from './src/directives/blur'
 
 module.exports = function (ctx) {
   return {
@@ -54,11 +55,16 @@ module.exports = function (ctx) {
         'QTab',
         'QSeparator',
         'QCard',
-        'QSpinnerDots'
+        'QSpinnerDots',
+        'QMenu',
+        'QTooltip'
+
       ],
 
       directives: [
-        'Ripple'
+        'Ripple',
+        'ClosePopup',
+        blur
       ],
 
       // Quasar plugins
