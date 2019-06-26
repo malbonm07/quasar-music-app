@@ -14,12 +14,12 @@
             </a>
           </div>
           <div v-show="false" >
-            <audio :src="trackObject.preview_url" ref="trackAudio" controls id="trackAudi">
+            <audio :src="trackObject.preview_url" ref="trackAudio" controls>
 
             </audio>
           </div>
         </q-img>
-        <q-item-section top class="flex flex-center q-pt-sm">
+        <q-item-section top class="flex flex-center q-pt-sm" v-if="folder">
           <q-item-label lines="1">
             <span class="text-subtitle2 text-capitalize text-white">{{trackObject.name}}</span>
           </q-item-label>
@@ -29,12 +29,6 @@
                    icon="folder_open"
                    @click="addToFavorites"
                    >
-              <!-- <q-tooltip
-                transition-show="scale"
-                transition-hide="scale"
-                content-class="bg-amber text-black shadow-4" :offset="[10, 10]"
-              >
-              Save</q-tooltip> -->
             </q-btn>
             <q-btn flat round color="white" icon="more_vert">
               <q-menu
@@ -59,9 +53,10 @@
 </template>
 
 <script>
+import trackMixin from '../mixins/playMixin'
 export default {
   name: "tracks",
-//   mixins: [fromMiliToSeconds],
+  mixins: [trackMixin],
   props: {
     trackObject: {
       type: Object,
@@ -74,6 +69,10 @@ export default {
     trackActive: {
         type: Boolean,
         required: true
+    },
+    folder: {
+      type: Boolean,
+      required: true
     }
   },
   data ()  {
@@ -91,16 +90,6 @@ export default {
     },
     addToFavorites() {
       this.$emit("favorite", this.indexObject);
-    },
-    play() {
-      let song = this.$refs.trackAudio
-      this.playBtn = false
-      song.play()
-    },
-    pause() {
-      let song = this.$refs.trackAudio
-      this.playBtn = true
-      song.pause()
     }
   },
   computed: {

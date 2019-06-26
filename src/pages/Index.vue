@@ -30,25 +30,27 @@
        </div>
     </div>
     <!------------------------------END LOADING------------------------------->
-
+    
+    <!------------------------------LIST OF TRACKS------------------------------->
     <div class="q-pa-md row justify-center items-center q-gutter-md">
       <div class="col-12">
         <div class="offset-1 col-10">
           <p class="text-center text-weight-thin text-subtitle1 text-grey text-weight-regular">{{tracks.length}} Songs were found</p>
         </div>
       </div>
-      <div class="col-5 col-sm-2" v-for="(track, index) in tracks" :key="track.id">
+      <div class="col-5 col-sm-3 col-md-2" v-for="(track, index) in tracks" :key="track.id">
         <Tracks
           :trackObject="track"
           :indexObject="index"
           @selected="trackSelected"
           :trackActive="track.id === trackIdSelected"
-          :class="{'isActive' : track.id === trackIdSelected }"
           @favorite="getFavoriteTrackIndex"
+          :folder="true"
         >
         </Tracks>
       </div>
     </div>
+    <!------------------------------END LIST OF TRACKS------------------------------->
 
     <!------------------------------SWIPER RELEASES------------------------------->
     <div class="row wrap">
@@ -56,69 +58,24 @@
         <h2 class="text-center text-h2 text-white">
           New Releases
         </h2>
-        <p class="text-center text-weight-thin text-subtitle1 text-grey">22 positions</p>
+        <p class="text-center text-weight-thin text-subtitle1 text-grey">{{releases.length}} positions</p>
       </div>
       <div class="col-12 q-pr-md q-pl-md">
       <!-- swiper -->
         <swiper :options="swiperOption">
-          <swiper-slide>
+          <swiper-slide v-for="(release, i) in releases" :key="i">
             <div class="col-4">
               <!-- Ratio: 4/3 -->
-              <q-img
-                src="https://placeimg.com/500/300/nature"
-                :ratio="1"
-                style="border-radius: 2px;"
-              />
-            </div>
-          </swiper-slide>
-          <swiper-slide>
-            <div class="col-4">
-              <!-- Ratio: 4/3 -->
-              <q-img
-                src="https://placeimg.com/500/300/nature"
-                :ratio="1"
-                style="border-radius: 2px;"
-              />
-            </div>
-          </swiper-slide>
-          <swiper-slide>
-            <div class="col-4">
-              <!-- Ratio: 4/3 -->
-              <q-img
-                src="https://placeimg.com/500/300/nature"
-                :ratio="1"
-                style="border-radius: 2px;"
-              />
-            </div>
-          </swiper-slide>
-          <swiper-slide>
-            <div class="col-4">
-              <!-- Ratio: 4/3 -->
-              <q-img
-                src="https://placeimg.com/500/300/nature"
-                :ratio="1"
-                style="border-radius: 2px;"
-              />
-            </div>
-          </swiper-slide>
-          <swiper-slide>
-            <div class="col-4">
-              <!-- Ratio: 4/3 -->
-              <q-img
-                src="https://placeimg.com/500/300/nature"
-                :ratio="1"
-                style="border-radius: 2px;"
-              />
-            </div>
-          </swiper-slide>
-          <swiper-slide>
-            <div class="col-4">
-              <!-- Ratio: 4/3 -->
-              <q-img
-                src="https://placeimg.com/500/300/nature"
-                :ratio="1"
-                style="border-radius: 2px;"
-              />
+              <Tracks 
+              :trackObject="release"
+              :indexObject="i"
+              @selected="trackSelected"
+              :trackActive="release.id === trackIdSelected"
+              :class="{'isActive' : release.id === trackIdSelected }"
+              @favorite="getFavoriteTrackIndex"
+              :folder="false"
+                  >
+              </Tracks>
             </div>
           </swiper-slide>
         </swiper>
@@ -133,7 +90,7 @@
           New Pleyed
         </h4>
       </div>
-      <div class="offset-1 col-10">
+      <div class="col-12 offset-md-1 col-md-10">
       <q-card>
         <q-tabs
           v-model="tab"
@@ -331,8 +288,10 @@ import Tracks from '../components/track.vue'
 import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import gettingApi from '../services/track'
+
 export default {
   name: 'PageIndex',
+
   components: {
     swiper,
     swiperSlide,
@@ -348,13 +307,14 @@ export default {
       favorites: [],
       trackIdSelected: "",
       tracksIds: [],
+      releases: [],
+      playBtn: true,
       text: '',
       ph: '',
       dense: false,
       swiperOption: {
-        slidesPerView: 4,
+        slidesPerView: 3,
         spaceBetween: 10,
-        // loop: true,
         freeMode: true,
         pagination: {
           el: '.swiper-pagination',
@@ -365,7 +325,16 @@ export default {
     }
   },
   created() {
-    
+    if(window.innerWidth > 600) {
+      this.swiperOption.slidesPerView = 4
+    }
+    let randomNum = Math.floor(Math.random() * Math.floor(6));
+    let arrayMusic = ['coldplay', 'the strokes you only', 'acdc', 'radiohead', 'king of leon', 'pearl jam', 'reik', 'soda stereo', 'maluma', 'adios amor daniela', 'probablemente daniela', 'muse starlight', 'muse panic station', 'the way you make me feel']
+    arrayMusic.forEach(track => {
+      gettingApi.search(track).then(res => {
+        this.releases.push(res.tracks.items[randomNum])
+       })
+    })
   },
   methods: {
     search () {
@@ -405,6 +374,9 @@ export default {
         //console.log("nuevo track agregado");
         //console.log(this.tracksIds)
       }
+    },
+    played() {
+      console.log(this.$refs.trackAudi)
     }
   }
 }
