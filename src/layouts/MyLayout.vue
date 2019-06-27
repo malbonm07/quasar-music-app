@@ -91,7 +91,6 @@
           active-class="my-menu-link"
         >
           <q-card style="background: #262626">
-            <q-card-section>
               <q-item clickable tag="a"
               :active="link === 'account'"
               @click="link = 'account'"
@@ -128,7 +127,6 @@
                   <q-item-label>Notification</q-item-label>
                 </q-item-section>
               </q-item>
-            </q-card-section>
           </q-card>
         </q-expansion-item>
         <q-item clickable tag="a"

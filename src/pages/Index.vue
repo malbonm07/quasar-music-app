@@ -46,6 +46,7 @@
           :trackActive="track.id === trackIdSelected"
           @favorite="getFavoriteTrackIndex"
           :folder="true"
+          v-blur="track.preview_url"
         >
         </Tracks>
       </div>
@@ -85,10 +86,17 @@
     <!------------------------------END SWIPER RELEASES------------------------------->
 
     <!------------------------------NEW PLEYED SECTION------------------------------->
-    <div class="row">
+    <div class="row q-mb-lg">
       <div class="offset-1 col-10">
         <h4 class="text-h4 $text-color-primary text-white">
           New Pleyed
+          <q-btn
+            color="amber-14"
+            size="xs"
+            label="More"
+            rounded
+            text-color="black"
+          />
         </h4>
       </div>
       <div class="col-12 offset-md-1 col-md-10">
@@ -112,13 +120,17 @@
             <div class="row">
               <div class="col-12">
                 <q-list bordered>
-                  <div v-for="track in releases" :key="track.id">
+                  <div v-for="(track, index) in releases" :key="track.id">
                     <q-item>
+                      <q-item-section class="col-1">
+                        <q-item-label>{{index}}</q-item-label>
+                      </q-item-section>
+
                       <q-item-section avatar>
                         <img :src="track.album.images[1].url" width="37px">
                       </q-item-section>
 
-                      <q-item-section class="col-3 col-sm-2">
+                      <q-item-section class="col-3 col-sm-2 q-ml-md">
                         <q-item-label lines="1" class="q-mt-xs">{{track.album.artists[0].name}}</q-item-label>
                         <q-item-label lines="1" class="q-mt-xs">
                           <span class="text-grey-8">{{track.name}}</span>
@@ -220,7 +232,50 @@
       </div>
     </div>
     <!------------------------------END NEW PLEYED SECTION------------------------------->
-
+    <q-separator color="grey-9"/>
+    <!------------------------------FOOTER------------------------------->
+    <div class="row q-mt-lg">
+      <div class="offset-1 col-10 col-sm-4 q-mb-lg">
+        <p class="text-start text-h4 text-white">
+          Genre
+        </p>
+        <q-btn
+          v-for="(genre, index) in genres" :key="index"
+          color="amber-14"
+          size="sm"
+          :label="genre"
+          class="q-ma-xs"
+          outline
+        />
+      </div>
+      <div class="offset-1 col-10 col-sm-5 q-mb-lg">
+        <p class="text-start text-h4 text-white">
+          Subscribe
+        </p>
+        <div class="row">
+          <q-input dark outlined placeholder="Email" dense class="col-8"/>
+          <q-btn color="amber-9" label="subscribe" text-color="black" class="col-4"/>
+        </div>
+        <div class="row q-mt-lg">
+          <q-btn round outline color="transparent" class="q-ma-xs">
+            <q-icon name="fab fa-twitter" color="amber" size="1.1rem"/>
+          </q-btn>
+          <q-btn round outline color="transparent" class="q-ma-xs">
+            <q-icon name="fab fa-facebook-f" color="amber" size="1.1rem"/>
+          </q-btn>
+          <q-btn round outline color="transparent" class="q-ma-xs">
+            <q-icon name="fab fa-instagram" color="amber" size="1.1rem"/>
+          </q-btn>
+          <q-btn round outline color="transparent" class="q-ma-xs">
+            <q-icon name="fab fa-pinterest-p" color="amber" size="1.1rem"/>
+          </q-btn>
+          <q-btn round outline color="transparent" class="q-ma-xs">
+            <q-icon name="fab fa-spotify" color="amber" size="1.1rem"/>
+          </q-btn>
+        </div>
+      </div>
+    </div>
+    <!------------------------------END FOOTER------------------------------->
   </q-page>
 </template>
 
@@ -255,6 +310,27 @@ export default {
       tracksIds: [],
       releases: [],
       btnFav: true,
+      genres: [
+        'Pop',
+        'Rock',
+        'Jazz',
+        'Blues',
+        'Hip Hop',
+        'Hip Hop',
+        'Soul',
+        'Metal',
+        'Reggae',
+        'Popular',
+        'Reaggeton',
+        'Punk Rock',
+        'Classical',
+        'Electro',
+        'Indie',
+        'Ska',
+        'Trap',
+        'Trance',
+        'Instrumental',
+      ],
       pleyed: {
         today: [],
         week: [],
