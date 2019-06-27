@@ -80,20 +80,57 @@
             <!-- <q-item-label caption>forum.quasar.dev</q-item-label> -->
           </q-item-section>
         </q-item>
-        <q-separator/>
-        <q-item clickable tag="a"
-        target="_blank"
-        :active="link === 'settings'"
-        @click="link = 'settings'"
-        active-class="my-menu-link">
-          <q-item-section avatar>
-            <q-icon name="settings" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Settings</q-item-label>
-            <!-- <q-item-label caption>@quasarframework</q-item-label> -->
-          </q-item-section>
-        </q-item>
+        <q-separator color="grey-9"/>
+        <q-expansion-item
+          expand-separator
+          icon="settings"
+          label="Settings"
+          header-class="text-grey-4"
+          :active="link === 'settings'"
+          @click="link = 'settings'"
+          active-class="my-menu-link"
+        >
+          <q-card style="background: #262626">
+            <q-card-section>
+              <q-item clickable tag="a"
+              :active="link === 'account'"
+              @click="link = 'account'"
+              target="_blank"
+              active-class="my-menu-link">
+                <q-item-section avatar>
+                  <q-icon name="perm_identity" />
+                </q-item-section>
+                <q-item-section>
+                  <q-item-label>Account</q-item-label>
+                </q-item-section>
+              </q-item>
+              <q-item clickable tag="a"
+              :active="link === 'privaticy'"
+              @click="link = 'privaticy'"
+              target="_blank"
+              active-class="my-menu-link">
+                <q-item-section avatar>
+                  <q-icon name="security" />
+                </q-item-section>
+                <q-item-section>
+                  <q-item-label>Privaticy</q-item-label>
+                </q-item-section>
+              </q-item>
+              <q-item clickable tag="a"
+              :active="link === 'notification'"
+              @click="link = 'notification'"
+              target="_blank"
+              active-class="my-menu-link">
+                <q-item-section avatar>
+                  <q-icon name="notification_important" />
+                </q-item-section>
+                <q-item-section>
+                  <q-item-label>Notification</q-item-label>
+                </q-item-section>
+              </q-item>
+            </q-card-section>
+          </q-card>
+        </q-expansion-item>
         <q-item clickable tag="a"
         target="_blank"
         :active="link === 'help'"

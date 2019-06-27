@@ -46,7 +46,6 @@
           :trackActive="track.id === trackIdSelected"
           @favorite="getFavoriteTrackIndex"
           :folder="true"
-          v-blur="track.preview_url"
         >
         </Tracks>
       </div>
@@ -75,7 +74,6 @@
               :class="{'isActive' : release.id === trackIdSelected }"
               @favorite="getFavoriteTrackIndex"
               :folder="false"
-              v-blur="release.preview_url"
               class="trackBox relative"
                   >
               </Tracks>
@@ -130,7 +128,7 @@
                       <q-item-section></q-item-section>
 
                       <q-item-section side>
-                        <q-item-label>{{track.duration_ms | milToSec}}</q-item-label>
+                        <q-item-label>{{track.duration_ms | miliToSeconds}}</q-item-label>
                       </q-item-section>
 
                       <q-item-section side>
@@ -166,7 +164,7 @@
                       <q-item-section></q-item-section>
 
                       <q-item-section side>
-                        <q-item-label>{{track.duration_ms | milToSec}}</q-item-label>
+                        <q-item-label>{{track.duration_ms | miliToSeconds}}</q-item-label>
                       </q-item-section>
 
                       <q-item-section side>
@@ -202,7 +200,7 @@
                       <q-item-section></q-item-section>
 
                       <q-item-section side>
-                        <q-item-label>{{track.duration_ms | milToSec}}</q-item-label>
+                        <q-item-label>{{track.duration_ms | miliToSeconds}}</q-item-label>
                       </q-item-section>
 
                       <q-item-section side>
@@ -300,8 +298,6 @@ export default {
         this.pleyed.month.push(res.tracks.items[randomNumToPleyed])
       })
     }
-    console.log(this.pleyed.month)
-
   },
   methods: {
     search () {
@@ -344,6 +340,13 @@ export default {
     },
     played() {
       console.log(this.$refs.trackAudi)
+    }
+  },
+  filters: {
+    miliToSeconds: function(millis) {
+      var minutes = Math.floor(millis / 60000);
+      var seconds = ((millis % 60000) / 1000).toFixed(0);
+      return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
     }
   }
 }

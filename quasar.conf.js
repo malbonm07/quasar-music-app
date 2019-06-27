@@ -56,7 +56,8 @@ module.exports = function (ctx) {
         'QCard',
         'QSpinnerDots',
         'QMenu',
-        'QTooltip'
+        'QTooltip',
+        'QExpansionItem'
 
       ],
 
