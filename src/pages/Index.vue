@@ -46,6 +46,7 @@
           :trackActive="track.id === trackIdSelected"
           @favorite="getFavoriteTrackIndex"
           :folder="true"
+          v-blur="track.preview_url"
         >
         </Tracks>
       </div>
@@ -74,6 +75,8 @@
               :class="{'isActive' : release.id === trackIdSelected }"
               @favorite="getFavoriteTrackIndex"
               :folder="false"
+              v-blur="release.preview_url"
+              class="trackBox relative"
                   >
               </Tracks>
             </div>
@@ -111,56 +114,33 @@
             <div class="row">
               <div class="col-12">
                 <q-list bordered>
-                  <q-item>
-                    <q-item-section avatar>
-                      <img src="https://cdn.quasar.dev/img/boy-avatar.png" width="37px">
-                    </q-item-section>
+                  <div v-for="track in releases" :key="track.id">
+                    <q-item>
+                      <q-item-section avatar>
+                        <img :src="track.album.images[1].url" width="37px">
+                      </q-item-section>
 
-                    <q-item-section class="col-3 col-sm-2">
-                      <q-item-label lines="1" class="q-mt-xs">Single line title</q-item-label>
-                      <q-item-label lines="1" class="q-mt-xs">
-                        <span class="text-grey-8"> Single subtitle</span>
-                      </q-item-label>
-                    </q-item-section>
+                      <q-item-section class="col-3 col-sm-2">
+                        <q-item-label lines="1" class="q-mt-xs">{{track.album.artists[0].name}}</q-item-label>
+                        <q-item-label lines="1" class="q-mt-xs">
+                          <span class="text-grey-8">{{track.name}}</span>
+                        </q-item-label>
+                      </q-item-section>
 
-                    <q-item-section></q-item-section>
+                      <q-item-section></q-item-section>
 
-                    <q-item-section side>
-                      <q-item-label>3:00</q-item-label>
-                    </q-item-section>
+                      <q-item-section side>
+                        <q-item-label>{{track.duration_ms | milToSec}}</q-item-label>
+                      </q-item-section>
 
-                    <q-item-section side>
-                      <div class="text-grey-8 q-gutter-xs">
-                        <q-btn size="12px" flat dense round icon="favorite" />
-                        <q-btn size="12px" flat dense round icon="more_vert" />
-                      </div>
-                    </q-item-section>
-                  </q-item>
-                  <q-item>
-                    <q-item-section avatar>
-                      <img src="https://cdn.quasar.dev/img/boy-avatar.png" width="37px">
-                    </q-item-section>
-
-                    <q-item-section class="col-3 col-sm-2">
-                      <q-item-label lines="1" class="q-mt-xs">Single line title</q-item-label>
-                      <q-item-label lines="1" class="q-mt-xs">
-                        <span class="text-grey-8"> Single subtitle</span>
-                      </q-item-label>
-                    </q-item-section>
-
-                    <q-item-section></q-item-section>
-
-                    <q-item-section side>
-                      <q-item-label>2:00</q-item-label>
-                    </q-item-section>
-
-                    <q-item-section side>
-                      <div class="text-grey-8 q-gutter-xs">
-                        <q-btn size="12px" flat dense round icon="favorite_border" />
-                        <q-btn size="12px" flat dense round icon="more_vert" />
-                      </div>
-                    </q-item-section>
-                  </q-item>
+                      <q-item-section side>
+                        <playedFavorite
+                          :btnValue = btnFav
+                        >
+                        </playedFavorite>
+                      </q-item-section>
+                    </q-item>
+                  </div>
                 </q-list>
               </div>
             </div>
@@ -170,50 +150,33 @@
             <div class="row">
               <div class="col-12">
                 <q-list bordered>
-                  <q-item>
-                    <q-item-section avatar>
-                      <img src="https://cdn.quasar.dev/img/boy-avatar.png" width="37px">
-                    </q-item-section>
+                  <div v-for="track in pleyed.week" :key="track.id">
+                    <q-item>
+                      <q-item-section avatar>
+                        <img :src="track.album.images[1].url" width="37px">
+                      </q-item-section>
 
-                    <q-item-section class="col-3 col-sm-2">
-                      <q-item-label lines="1" class="q-mt-xs">Single line title</q-item-label>
-                      <q-item-label lines="1" class="q-mt-xs">
-                        <span class="text-grey-8"> Single subtitle</span>
-                      </q-item-label>
-                    </q-item-section>
+                      <q-item-section class="col-3 col-sm-2">
+                        <q-item-label lines="1" class="q-mt-xs">{{track.album.artists[0].name}}</q-item-label>
+                        <q-item-label lines="1" class="q-mt-xs">
+                          <span class="text-grey-8">{{track.name}}</span>
+                        </q-item-label>
+                      </q-item-section>
 
-                    <q-item-section>
-                    </q-item-section>
+                      <q-item-section></q-item-section>
 
-                    <q-item-section side>
-                      <div class="text-grey-8 q-gutter-xs">
-                        <q-btn size="12px" flat dense round icon="favorite" />
-                        <q-btn size="12px" flat dense round icon="more_vert" />
-                      </div>
-                    </q-item-section>
-                  </q-item>
-                  <q-item>
-                    <q-item-section avatar>
-                      <img src="https://cdn.quasar.dev/img/boy-avatar.png" width="37px">
-                    </q-item-section>
+                      <q-item-section side>
+                        <q-item-label>{{track.duration_ms | milToSec}}</q-item-label>
+                      </q-item-section>
 
-                    <q-item-section class="col-3 col-sm-2">
-                      <q-item-label lines="1" class="q-mt-xs">Single line title</q-item-label>
-                      <q-item-label lines="1" class="q-mt-xs">
-                        <span class="text-grey-8"> Single subtitle</span>
-                      </q-item-label>
-                    </q-item-section>
-
-                    <q-item-section>
-                    </q-item-section>
-
-                    <q-item-section side>
-                      <div class="text-grey-8 q-gutter-xs">
-                        <q-btn size="12px" flat dense round icon="favorite_border" />
-                        <q-btn size="12px" flat dense round icon="more_vert" />
-                      </div>
-                    </q-item-section>
-                  </q-item>
+                      <q-item-section side>
+                        <playedFavorite
+                          :btnValue = btnFav
+                        >
+                        </playedFavorite>
+                      </q-item-section>
+                    </q-item>
+                  </div>
                 </q-list>
               </div>
             </div>
@@ -223,50 +186,33 @@
             <div class="row">
               <div class="col-12">
                 <q-list bordered>
-                  <q-item>
-                    <q-item-section avatar>
-                      <img src="https://cdn.quasar.dev/img/boy-avatar.png" width="37px">
-                    </q-item-section>
+                  <div v-for="track in pleyed.month" :key="track.id">
+                    <q-item>
+                      <q-item-section avatar>
+                        <img :src="track.album.images[1].url" width="37px">
+                      </q-item-section>
 
-                    <q-item-section class="col-3 col-sm-2">
-                      <q-item-label lines="1" class="q-mt-xs">Single line title</q-item-label>
-                      <q-item-label lines="1" class="q-mt-xs">
-                        <span class="text-grey-8"> Single subtitle</span>
-                      </q-item-label>
-                    </q-item-section>
+                      <q-item-section class="col-3 col-sm-2">
+                        <q-item-label lines="1" class="q-mt-xs">{{track.album.artists[0].name}}</q-item-label>
+                        <q-item-label lines="1" class="q-mt-xs">
+                          <span class="text-grey-8">{{track.name}}</span>
+                        </q-item-label>
+                      </q-item-section>
 
-                    <q-item-section>
-                    </q-item-section>
+                      <q-item-section></q-item-section>
 
-                    <q-item-section side>
-                      <div class="text-grey-8 q-gutter-xs">
-                        <q-btn size="12px" flat dense round icon="favorite" />
-                        <q-btn size="12px" flat dense round icon="more_vert" />
-                      </div>
-                    </q-item-section>
-                  </q-item>
-                  <q-item>
-                    <q-item-section avatar>
-                      <img src="https://cdn.quasar.dev/img/boy-avatar.png" width="37px">
-                    </q-item-section>
+                      <q-item-section side>
+                        <q-item-label>{{track.duration_ms | milToSec}}</q-item-label>
+                      </q-item-section>
 
-                    <q-item-section class="col-3 col-sm-2">
-                      <q-item-label lines="1" class="q-mt-xs">Single line title</q-item-label>
-                      <q-item-label lines="1" class="q-mt-xs">
-                        <span class="text-grey-8"> Single subtitle</span>
-                      </q-item-label>
-                    </q-item-section>
-
-                    <q-item-section>
-                    </q-item-section>
-
-                    <q-item-section side>
-                      <div class="text-grey-8 q-gutter-xs">
-                        <q-btn size="12px" flat dense round icon="favorite_border" />
-                        <q-btn size="12px" flat dense round icon="more_vert" />
-                      </div>
-                    </q-item-section>
-                  </q-item>
+                      <q-item-section side>
+                        <playedFavorite
+                          :btnValue = btnFav
+                        >
+                        </playedFavorite>
+                      </q-item-section>
+                    </q-item>
+                  </div>
                 </q-list>
               </div>
             </div>
@@ -288,6 +234,7 @@ import Tracks from '../components/track.vue'
 import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import gettingApi from '../services/track'
+import playedFavorite from '../components/pleyedFavorite'
 
 export default {
   name: 'PageIndex',
@@ -295,7 +242,8 @@ export default {
   components: {
     swiper,
     swiperSlide,
-    Tracks
+    Tracks,
+    playedFavorite
   },
   data () {
     return {
@@ -308,6 +256,12 @@ export default {
       trackIdSelected: "",
       tracksIds: [],
       releases: [],
+      btnFav: true,
+      pleyed: {
+        today: [],
+        week: [],
+        month: []
+      },
       playBtn: true,
       text: '',
       ph: '',
@@ -329,12 +283,25 @@ export default {
       this.swiperOption.slidesPerView = 4
     }
     let randomNum = Math.floor(Math.random() * Math.floor(6));
+    let randomNumToPleyed = Math.floor(Math.random() * Math.floor(6));
     let arrayMusic = ['coldplay', 'the strokes you only', 'acdc', 'radiohead', 'king of leon', 'pearl jam', 'reik', 'soda stereo', 'maluma', 'adios amor daniela', 'probablemente daniela', 'muse starlight', 'muse panic station', 'the way you make me feel']
     arrayMusic.forEach(track => {
       gettingApi.search(track).then(res => {
         this.releases.push(res.tracks.items[randomNum])
        })
     })
+    for(let i=0; i<6; i++) {
+      gettingApi.search(arrayMusic[i]).then(res => {
+        this.pleyed.week.push(res.tracks.items[randomNumToPleyed])
+      })
+    }
+    for(let i=6; i<12; i++) {
+      gettingApi.search(arrayMusic[i]).then(res => {
+        this.pleyed.month.push(res.tracks.items[randomNumToPleyed])
+      })
+    }
+    console.log(this.pleyed.month)
+
   },
   methods: {
     search () {

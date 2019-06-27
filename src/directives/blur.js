@@ -1,5 +1,3 @@
-import Vue from "vue";
-
 const blur = {};
 
 function setBlur(el, binding) {
@@ -30,7 +28,5 @@ blur.install = function(Vue) {
     }
   });
 };
-
-Vue.use(blur);
 
 export default blur;
