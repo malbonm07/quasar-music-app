@@ -58,7 +58,8 @@ module.exports = function (ctx) {
         'QSpinnerDots',
         'QMenu',
         'QTooltip',
-        'QExpansionItem'
+        'QExpansionItem',
+        'QLinearProgress'
 
       ],
 

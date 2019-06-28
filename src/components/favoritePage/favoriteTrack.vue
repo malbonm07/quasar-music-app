@@ -50,8 +50,8 @@ export default {
       this.$emit("delete", this.favoriteTrackIndex);
     },
     playTrack() {
-    //   this.$root.$emit('play', this.favoriteTrackObject)
-    console.log('hola mundo!')
+        this.$emit('currentSong', this.favoriteTrackObject)
+      this.$root.$emit('play', this.favoriteTrackObject)
     }
   },
   filters: {
