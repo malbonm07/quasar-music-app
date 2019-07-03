@@ -15,15 +15,14 @@
           </div>
           <div v-show="false" >
             <audio :src="trackObject.preview_url" ref="trackAudio" controls>
-
             </audio>
           </div>
         </q-img>
-        <q-item-section top class="flex flex-center q-pt-sm" v-if="folder">
+        <q-item-section top class="flex flex-center q-pt-sm">
           <q-item-label lines="1">
             <span class="text-subtitle2 text-capitalize text-white">{{trackObject.name}}</span>
           </q-item-label>
-          <q-item-label lines="1" class="q-mt-xs text-body2 text-weight-bold text-grey-9 text-capitalize">
+          <q-item-label lines="1" class="q-mt-xs text-body2 text-weight-bold text-grey-9 text-capitalize" v-if="folder">
             <span class="text-caption text-weight-light text-grey">Add to Folder</span>
             <q-btn flat round color="white" 
                    icon="folder_open"
