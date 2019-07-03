@@ -45,12 +45,15 @@ export default {
   data() {
     return {};
   },
+  created() {
+    this.playTrack()
+  },
   methods: {
     deleteFavoriteTrack() {
       this.$emit("delete", this.favoriteTrackIndex);
     },
     playTrack() {
-        this.$emit('currentSong', this.favoriteTrackObject)
+      this.$emit('currentSong', this.favoriteTrackObject)
       this.$root.$emit('play', this.favoriteTrackObject)
     }
   },

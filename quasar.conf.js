@@ -59,8 +59,9 @@ module.exports = function (ctx) {
         'QMenu',
         'QTooltip',
         'QExpansionItem',
-        'QLinearProgress'
-
+        'QLinearProgress',
+        'QCardSection',
+        'QSeparator',
       ],
 
       directives: [

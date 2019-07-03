@@ -1,10 +1,12 @@
 <template>
     <q-page>
-        <div class="row relative bg-overlay" style="height: 100vh;">
-            <div class="offset-1 col-10 offset-sm-3 col-sm-6 absolute q-pa-lg" style="z-index: 10;">
-                <favoriteAudio>
-
-                </favoriteAudio>
+        <div class="" style="">
+        <div class="row relative bg-overlay q-mb-md" style="height: 100vh">
+            <div class="row flex flex-center absolute" style="width: 100%; height: 100%;">
+            <div class="col-sm-5 col-lg-7" style="z-index: 10;">
+              <favoriteAudio>
+              </favoriteAudio>
+            </div>
             </div>
                 <!-- <div class="col-12 col-sm-5 absolute" style="z-index: 10;">
                     <q-list bordered>
@@ -17,6 +19,7 @@
                     </q-list>
                 </div> -->
             <q-img v-if="currentTrackSong" :src="currentTrackSong.album.images[1].url" :ratio="16/9" style="filter: blur(15px);"></q-img>
+        </div>
         </div>
         <div class="col-12 bg-black">
             <q-list bordered dark>
