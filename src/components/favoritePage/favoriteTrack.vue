@@ -1,7 +1,7 @@
 <template>
     <q-item v-if="favoriteTrackObject" clickable @click="playTrack">
         <q-item-section class="col-1">
-            <q-item-label class="text-center">{{favoriteTrackIndex}}</q-item-label>
+            <q-item-label class="text-center">{{favoriteTrackIndex | indexTrack}}</q-item-label>
         </q-item-section>
 
         <q-item-section avatar>
@@ -20,7 +20,7 @@
 
         <q-item-section side>
             <q-item-label>
-                {{favoriteTrackObject.duration_ms | miliToSeconds}}
+                {{favoriteTrackObject.duration_ms | milToSec}}
             </q-item-label>
         </q-item-section>
 
@@ -55,13 +55,6 @@ export default {
     playTrack() {
       this.$emit('currentSong', this.favoriteTrackObject)
       this.$root.$emit('play', this.favoriteTrackObject)
-    }
-  },
-  filters: {
-    miliToSeconds: function(millis) {
-      var minutes = Math.floor(millis / 60000);
-      var seconds = ((millis % 60000) / 1000).toFixed(0);
-      return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
     }
   }
 };

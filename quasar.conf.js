@@ -8,7 +8,9 @@ module.exports = function (ctx) {
     boot: [
       'i18n',
       'axios',
-      'blur'
+      'blur',
+      'milToSec',
+      'indexTrack'
     ],
 
     css: [
@@ -62,6 +64,7 @@ module.exports = function (ctx) {
         'QLinearProgress',
         'QCardSection',
         'QSeparator',
+        'QBadge'
       ],
 
       directives: [

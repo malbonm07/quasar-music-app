@@ -123,7 +123,7 @@
                   <div v-for="(track, index) in releases" :key="track.id">
                     <q-item>
                       <q-item-section class="col-1">
-                        <q-item-label>{{index}}</q-item-label>
+                        <q-item-label>{{index | indexTrack}}</q-item-label>
                       </q-item-section>
 
                       <q-item-section avatar>
@@ -140,7 +140,7 @@
                       <q-item-section></q-item-section>
 
                       <q-item-section side>
-                        <q-item-label>{{track.duration_ms | miliToSeconds}}</q-item-label>
+                        <q-item-label>{{track.duration_ms | milToSec}}</q-item-label>
                       </q-item-section>
 
                       <q-item-section side>
@@ -160,13 +160,16 @@
             <div class="row">
               <div class="col-12">
                 <q-list bordered>
-                  <div v-for="track in pleyed.week" :key="track.id">
+                  <div v-for="(track, index) in pleyed.week" :key="track.id">
                     <q-item>
+                      <q-item-section class="col-1">
+                        <q-item-label>{{index | indexTrack}}</q-item-label>
+                      </q-item-section>
                       <q-item-section avatar>
                         <img :src="track.album.images[1].url" width="37px">
                       </q-item-section>
 
-                      <q-item-section class="col-3 col-sm-2">
+                      <q-item-section class="col-3 col-sm-2 q-ml-md">
                         <q-item-label lines="1" class="q-mt-xs">{{track.album.artists[0].name}}</q-item-label>
                         <q-item-label lines="1" class="q-mt-xs">
                           <span class="text-grey-8">{{track.name}}</span>
@@ -176,7 +179,7 @@
                       <q-item-section></q-item-section>
 
                       <q-item-section side>
-                        <q-item-label>{{track.duration_ms | miliToSeconds}}</q-item-label>
+                        <q-item-label>{{track.duration_ms | milToSec}}</q-item-label>
                       </q-item-section>
 
                       <q-item-section side>
@@ -196,13 +199,16 @@
             <div class="row">
               <div class="col-12">
                 <q-list bordered>
-                  <div v-for="track in pleyed.month" :key="track.id">
+                  <div v-for="(track, index) in pleyed.month" :key="track.id">
                     <q-item>
+                      <q-item-section class="col-1">
+                        <q-item-label>{{index | indexTrack}}</q-item-label>
+                      </q-item-section>
                       <q-item-section avatar>
                         <img :src="track.album.images[1].url" width="37px">
                       </q-item-section>
 
-                      <q-item-section class="col-3 col-sm-2">
+                      <q-item-section class="col-3 col-sm-2 q-ml-md">
                         <q-item-label lines="1" class="q-mt-xs">{{track.album.artists[0].name}}</q-item-label>
                         <q-item-label lines="1" class="q-mt-xs">
                           <span class="text-grey-8">{{track.name}}</span>
@@ -212,7 +218,7 @@
                       <q-item-section></q-item-section>
 
                       <q-item-section side>
-                        <q-item-label>{{track.duration_ms | miliToSeconds}}</q-item-label>
+                        <q-item-label>{{track.duration_ms | milToSec}}</q-item-label>
                       </q-item-section>
 
                       <q-item-section side>
@@ -374,6 +380,7 @@ export default {
         this.pleyed.month.push(res.tracks.items[randomNumToPleyed])
       })
     }
+    console.log(this)
   },
   methods: {
     search () {
@@ -416,13 +423,6 @@ export default {
     },
     played() {
       console.log(this.$refs.trackAudi)
-    }
-  },
-  filters: {
-    miliToSeconds: function(millis) {
-      var minutes = Math.floor(millis / 60000);
-      var seconds = ((millis % 60000) / 1000).toFixed(0);
-      return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
     }
   }
 }

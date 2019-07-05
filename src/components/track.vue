@@ -37,7 +37,7 @@
                 square
               >
                 <q-list style="min-width: 100px">
-                  <q-item clickable>
+                  <q-item clickable @click="goToTrack(trackObject.id)">
                     <q-item-section>See Details</q-item-section>
                   </q-item>
                   <q-item clickable>
@@ -90,8 +90,6 @@ export default {
     addToFavorites() {
       this.$emit("favorite", this.indexObject);
     }
-  },
-  computed: {
   }
 };
 </script>

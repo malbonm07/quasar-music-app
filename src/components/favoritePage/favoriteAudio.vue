@@ -89,6 +89,11 @@ export default {
   created() {
     this.$root.$on("play", track => {
     this.favoriteTrack = track;
+    if(this.playTrack === false) {
+      this.playTrack = true;
+      let audioTagProgress = document.getElementById('linear-progress');
+      audioTagProgress.style.width = '0%'
+    }
     });
   },
   mounted() {
