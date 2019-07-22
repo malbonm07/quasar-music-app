@@ -82,7 +82,6 @@ export default {
   methods: {
     goToTrack(id) {
       this.$router.push({ name: "track", params: { id } });
-      console.log(id);
     },
     selectTrack() {
         this.$emit("selected", this.trackObject.id);

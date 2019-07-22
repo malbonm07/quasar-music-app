@@ -29,6 +29,9 @@
         <!-- <q-tooltip :offset="[0, 8]">QSpinnerDots</q-tooltip> -->
        </div>
     </div>
+    <!-- <button @click="showMessage = !showMessage">
+      click aqui
+    </button> -->
     <!------------------------------END LOADING------------------------------->
     
     <!------------------------------LIST OF TRACKS------------------------------->
@@ -47,7 +50,7 @@
           @favorite="getFavoriteTrackIndex"
           :folder="true"
           v-blur="track.preview_url"
-        >
+          >
         </Tracks>
       </div>
     </div>
@@ -282,6 +285,16 @@
       </div>
     </div>
     <!------------------------------END FOOTER------------------------------->
+
+    <!------------------------------SAVE NOTIFICATION------------------------------->
+    <transition name="fadeup">
+      <div v-if="showMessage" class="save-message">
+        <div class="q-pa-xs text-center save-message-box">
+          <h6 class="q-mt-xs q-mb-xs save-message__text">Saved in <span class="text-weight-medium">"My music folder"</span></h6>
+        </div>
+      </div>
+    </transition>
+    <!------------------------------ END SAVE NOTIFICATION-------------------------->
   </q-page>
 </template>
 
@@ -294,6 +307,7 @@ import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import gettingApi from '../services/track'
 import playedFavorite from '../components/pleyedFavorite'
+import { setTimeout } from 'timers';
 
 export default {
   name: 'PageIndex',
@@ -306,6 +320,7 @@ export default {
   },
   data () {
     return {
+      showMessage: false,
       searchedTrack: '',
       tracks: [],
       loading: null,
@@ -347,20 +362,41 @@ export default {
       ph: '',
       dense: false,
       swiperOption: {
-        slidesPerView: 3,
-        spaceBetween: 10,
+        slidesPerView: 4.5,
+        spaceBetween: 20,
         freeMode: true,
         pagination: {
           el: '.swiper-pagination',
           clickable: true
-        }
+        },
+        breakpoints: {
+          1024: {
+            slidesPerView: 4.5,
+            spaceBetween: 30
+          },
+          768: {
+            slidesPerView: 3.2,
+            spaceBetween: 30
+          },
+          640: {
+            slidesPerView: 2.5,
+            spaceBetween: 20
+          },
+          320: {
+            slidesPerView: 2.2,
+            spaceBetween: 10
+          }
+          }
       },
       tab: 'today'
     }
   },
   created() {
-    if(window.innerWidth > 600) {
-      this.swiperOption.slidesPerView = 4
+    this.favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+    if(this.favorites.length > 0) {
+      this.favorites.forEach(track => {
+        this.tracksIds.push(track.id)
+      })
     }
     let randomNum = Math.floor(Math.random() * Math.floor(6));
     let randomNumToPleyed = Math.floor(Math.random() * Math.floor(6));
@@ -380,7 +416,6 @@ export default {
         this.pleyed.month.push(res.tracks.items[randomNumToPleyed])
       })
     }
-    console.log(this)
   },
   methods: {
     search () {
@@ -402,7 +437,7 @@ export default {
     trackSelected(id) {
       this.trackIdSelected = id;
     },
-    getFavoriteTrackIndex(index) {     
+    getFavoriteTrackIndex(index) {
       if(this.tracksIds.length === 0) { //agregamos el track.id al arreglo tracksIds[] y agregamos el mismo objeto a favoritos[]
         this.tracksIds.push(this.tracks[index].id)
         this.favorites.push(this.tracks[index]);
@@ -417,12 +452,22 @@ export default {
         this.favorites.push(this.tracks[index]);
         this.tracksIds.push(this.tracks[index].id)
         localStorage.setItem("favorites", JSON.stringify(this.favorites));
+
+        if(!this.showMessage) {
+        this.showMessage = true;
+        }
         //console.log("nuevo track agregado");
         //console.log(this.tracksIds)
       }
-    },
-    played() {
-      console.log(this.$refs.trackAudi)
+    }
+  },
+  watch: {
+    showMessage() {
+      if(this.showMessage) {
+        setTimeout(() => {
+          this.showMessage = false;
+        }, 1000)
+      }
     }
   }
 }

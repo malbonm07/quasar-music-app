@@ -3,7 +3,12 @@
     <q-header elevated style="background: #0A4987">
       <q-toolbar>
         <q-toolbar-title>
-          Free Music App
+          <q-item clickable to="/" exact 
+            :active="link === 'artists'"
+            @click="link = 'artists'"
+          >
+            <div style="color: white;">Free Music App</div>
+          </q-item>
         </q-toolbar-title>
 
         <!-- <div>Quasar v{{ $q.version }}</div> -->
@@ -31,6 +36,7 @@
         :active="link === 'radio'"
         @click="link = 'radio'"
         active-class="my-menu-link"
+        exact
         >
           <q-item-section avatar>
             <q-icon name="radio" />
@@ -41,10 +47,11 @@
           </q-item-section>
         </q-item>
         <q-item clickable tag="a"
-        target="_blank"
         :active="link === 'folder'"
         @click="link = 'folder'"
         active-class="my-menu-link"
+        exact
+        to="/favorites"
         >
           <q-item-section avatar>
             <q-icon name="folder" />
@@ -55,10 +62,12 @@
           </q-item-section>
         </q-item>
         <q-item clickable tag="a"
-        target="_blank"
         :active="link === 'artists'"
         @click="link = 'artists'"
-        active-class="my-menu-link">
+        active-class="my-menu-link"
+        exact
+        to="/"
+        >
           <q-item-section avatar>
             <q-icon name="headset" />
           </q-item-section>

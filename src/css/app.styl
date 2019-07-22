@@ -72,16 +72,6 @@
   -moz-box-shadow: 0px -24px 34px 35px rgba(0,0,0,1) !important;
   box-shadow: 0px -24px 34px 35px rgba(0,0,0,1) !important;
 
-// .bg-overlay:after
-//   content: "";
-//   width: 100%;
-//   top: 0;
-//   bottom: 0;
-//   right: 0;
-//   left: 0;
-//   position: absolute;
-//   background: rgba(0,0,0,0.3);
-
 .progress
   width: 100%;
   height: 2px;
@@ -94,7 +84,90 @@
   transition: .2s;
 
 .badgeSuc
-  background: #00E676!important;
+  background: #28A645!important;
   
 .badgeWarning
   background: #FFC107 !important;
+
+.btn-link 
+  display: block;
+  width: 60%;
+  line-height: 20px;
+  border: 1px solid white;
+  border-radius: 4px;
+  position: relative;
+  z-index: 10;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.3);
+  margin: 0px auto 10px auto;
+  outline: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: all 0.2s;
+  font-weight: bold;
+  text-decoration: none;
+
+
+.btn-link:hover 
+  background: rgba(255, 255, 255, 0.8);
+  color: black !important;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  mix-blend-mode: screen;
+  cursor: pointer;
+
+.btn-link:active 
+  transform: translateY(1px);
+
+
+.save-message
+  position: fixed;
+  bottom: 1.5%;
+  right: 2%;
+  width: 150px;
+  background: #FFB300;
+  border-radius: 3px;
+  z-index: 30;
+  // transition: all .15s ease-out;
+  // transform: translateY(0px)
+
+.save-message__text
+  font-size: 10px;
+  line-height: 15px;
+  font-weight: 400;
+
+.fadeup-enter-active, .fadeup-leave-active {
+  transition: all .2s ease-out;
+  opacity: 0.7;
+}
+.fadeup-enter, /* .fade-leave-active below version 2.1.8 */ {
+  transform: translateY(80px);
+}
+.fadeup-leave-to {
+  opacity: 0;
+}
+
+.active-save-message
+  transform: translateY(0);
+
+@media (min-width: 425px) {
+  .save-message {
+    width: 200px;
+  }
+  .save-message__text {
+    font-size: 11px;
+  }
+}
+@media (min-width: 700px) {
+  .save-message {
+    width: 300px;
+  }
+  .save-message__text {
+    font-size: 12px;
+  }
+}
+@media (min-width: 1024px) {
+  .save-message__text {
+    font-size: 16px;
+  }
+}
