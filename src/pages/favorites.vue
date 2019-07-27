@@ -1,6 +1,6 @@
 <template>
     <q-page>
-        <div class="" style="">
+        <div>
         <div class="row relative bg-overlay q-mb-md" style="height: 100vh">
             <div class="row flex flex-center absolute" style="width: 100%; height: 100%;">
             <div class="col-sm-5 col-lg-7" style="z-index: 10;">

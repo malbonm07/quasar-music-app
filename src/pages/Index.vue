@@ -19,6 +19,7 @@
     </div>
     <!------------------------------END HEADER------------------------------->
 
+
     <!------------------------------LOADING------------------------------->
     <div class="row justify-center q-pt-lg" v-show="loading">
       <div>
@@ -29,10 +30,8 @@
         <!-- <q-tooltip :offset="[0, 8]">QSpinnerDots</q-tooltip> -->
        </div>
     </div>
-    <!-- <button @click="showMessage = !showMessage">
-      click aqui
-    </button> -->
     <!------------------------------END LOADING------------------------------->
+    
     
     <!------------------------------LIST OF TRACKS------------------------------->
     <div class="q-pa-md row justify-center items-center q-gutter-md">

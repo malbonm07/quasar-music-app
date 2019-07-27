@@ -1,5 +1,7 @@
 <template>
   <q-layout view="lHh Lpr lFf">
+
+<!--------------------------- NAVBAR -------------------------->
     <q-header elevated style="background: #0A4987">
       <q-toolbar>
         <q-toolbar-title>
@@ -11,7 +13,6 @@
           </q-item>
         </q-toolbar-title>
 
-        <!-- <div>Quasar v{{ $q.version }}</div> -->
         <q-btn
           flat
           dense
@@ -23,14 +24,15 @@
         </q-btn>
       </q-toolbar>
     </q-header>
+<!--------------------------- END NAVBAR -------------------------->
 
+
+<!--------------------------- NAV SIDEBAR-------------------------->
     <q-drawer
       v-model="leftDrawerOpen"
       bordered
-      :content-style="{ backgroundColor: '#1a1a1a' }"
-    >
+      :content-style="{ backgroundColor: '#1a1a1a' }">
       <q-list bordered class="text-grey-4">
-        <!-- <q-item-label header>Essential Links</q-item-label> -->
         <q-item clickable tag="a"
         target="_blank"
         :active="link === 'radio'"
@@ -43,7 +45,6 @@
           </q-item-section>
           <q-item-section>
             <q-item-label>Radio</q-item-label>
-            <!-- <q-item-label caption>quasar.dev</q-item-label> -->
           </q-item-section>
         </q-item>
         <q-item clickable tag="a"
@@ -58,7 +59,6 @@
           </q-item-section>
           <q-item-section>
             <q-item-label>My Music Folder</q-item-label>
-            <!-- <q-item-label caption>github.com/quasarframework</q-item-label> -->
           </q-item-section>
         </q-item>
         <q-item clickable tag="a"
@@ -73,7 +73,6 @@
           </q-item-section>
           <q-item-section>
             <q-item-label>Artists</q-item-label>
-            <!-- <q-item-label caption>chat.quasar.dev</q-item-label> -->
           </q-item-section>
         </q-item>
         <q-item clickable tag="a"
@@ -86,7 +85,6 @@
           </q-item-section>
           <q-item-section>
             <q-item-label>Video</q-item-label>
-            <!-- <q-item-label caption>forum.quasar.dev</q-item-label> -->
           </q-item-section>
         </q-item>
         <q-separator color="grey-9"/>
@@ -148,7 +146,6 @@
           </q-item-section>
           <q-item-section>
             <q-item-label>Help</q-item-label>
-            <!-- <q-item-label caption>@quasarframework</q-item-label> -->
           </q-item-section>
         </q-item>
         <q-item clickable tag="a"
@@ -161,14 +158,20 @@
           </q-item-section>
           <q-item-section>
             <q-item-label>Send Feedback</q-item-label>
-            <!-- <q-item-label caption>@quasarframework</q-item-label> -->
           </q-item-section>
         </q-item>
       </q-list>
     </q-drawer>
+<!--------------------------- NAV SIDEBAR -------------------------->
+
+
+<!--------------------------- ROUTER VIEW -------------------------->
     <q-page-container>
       <router-view />
     </q-page-container>
+<!--------------------------- ROUTER VIEW -------------------------->
+
+
   </q-layout>
 </template>
 
