@@ -1,6 +1,6 @@
 # Quasar App with Vue
 
-##### By MALBONM07
+##### By Malbonm07
 
 This is a personal project to demostrate my skills as a Front End developer. This a vue app created with Quasar Framework and some tools like Vue router, Html, Css and others.
 
