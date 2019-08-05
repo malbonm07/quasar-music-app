@@ -1,5 +1,5 @@
 # Quasar App with Vue
-=====================
+
 ##### By MALBONM07
 
 This is a personal project to demostrate my skills as a Front End developer. This a vue app created with Quasar Framework and some tools like Vue router, Html, Css and others.
@@ -23,14 +23,14 @@ This is a personal project to demostrate my skills as a Front End developer. Thi
 * Html5
 * CSS - Sass
 * Javascript
-* [Axios] (https://github.com/axios/axios)
-* [Material Icons] (https://material.io/resources/icons/)
+* [Axios](https://github.com/axios/axios)
+* [Material Icons](https://material.io/resources/icons/)
 * [Vue-Awesome-Swiper](https://github.com/surmon-china/vue-awesome-swiper)
 
 ### To Learn:
 
-* [Passing Props to Route Components ] (https://router.vuejs.org/guide/essentials/passing-props.html)
-* [Quasar Docs] (https://quasar.dev/start/pick-quasar-flavour)
+* [Passing Props to Route Components](https://router.vuejs.org/guide/essentials/passing-props.html)
+* [Quasar Docs](https://quasar.dev/start/pick-quasar-flavour)
 
 ---
 @malbonm07
