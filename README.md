@@ -32,7 +32,7 @@ This is a personal project to demostrate my skills as a Front End developer. Thi
 * [Passing Props to Route Components ] (https://router.vuejs.org/guide/essentials/passing-props.html)
 * [Quasar Docs] (https://quasar.dev/start/pick-quasar-flavour)
 
-===
+---
 @malbonm07
 
 
