@@ -16,7 +16,7 @@ This is a personal project to demostrate my skills as a Front End developer. Thi
 
 * Vue
 * Vue Router
-* [Quasar] (https://quasar.dev/)
+* [Quasar](https://quasar.dev/)
 
 ### Programings Languages, Tools and Technologies:
 
