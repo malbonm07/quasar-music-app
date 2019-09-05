@@ -4,6 +4,10 @@
 
 This is a personal project to demostrate my skills as a Front End developer. This a vue app created with Quasar Framework and some tools like Vue router, Html, Css and others.
 
+![alt text](https://i.imgur.com/BQjS63J.png)
+![alt text](https://i.imgur.com/JU7XFUR.png)
+![alt text](https://i.imgur.com/shasX5m.png)
+
 ### Important things to highlight:
 
 - Use of vue router params, in this case I use it for pass a useful information like a query and get the data through axios.
