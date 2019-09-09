@@ -7,7 +7,7 @@ This is a personal project, A simple application that consumes an Api REST, you 
 ![alt text](https://i.imgur.com/BQjS63J.png)
 ![alt text](https://i.imgur.com/JU7XFUR.png)
 ![alt text](https://i.imgur.com/tRbXgsM.png)
-![alt text](https://i.imgur.com/shasX5m.png)
+![alt text](https://i.imgur.com/r6ZRcxk.png)
 
 ### Important things to highlight:
 
