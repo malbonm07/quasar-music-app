@@ -6,8 +6,8 @@ This is a personal project to demostrate my skills as a Front End developer. Thi
 
 ![alt text](https://i.imgur.com/BQjS63J.png)
 ![alt text](https://i.imgur.com/JU7XFUR.png)
+![alt text](https://i.imgur.com/tRbXgsM.png)
 ![alt text](https://i.imgur.com/shasX5m.png)
-![alt text](https://i.imgur.com/gWEhzEy.png)
 
 ### Important things to highlight:
 
