@@ -2,7 +2,7 @@
 
 ##### By Malbonm07
 
-This is a personal project to demostrate my skills as a Front End developer. This a vue app created with Quasar Framework and some tools like Vue router, Html, Css and others.
+This is a personal project, A simple application that consumes an Api REST, you can easily search and play music. This project was created with Quasar Framework and some tools like Vue router, Html, Css and others.
 
 ![alt text](https://i.imgur.com/BQjS63J.png)
 ![alt text](https://i.imgur.com/JU7XFUR.png)
